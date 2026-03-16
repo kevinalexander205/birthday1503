@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Bebii 💜</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#f6efff,#e9dcff);
+font-family:Segoe UI, sans-serif;
+overflow:hidden;
+}
+
+/* envelope */
+
+.envelope{
+width:320px;
+height:200px;
+background:#d9c8ff;
+position:relative;
+cursor:pointer;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.flap{
+position:absolute;
+width:100%;
+height:100%;
+background:#c7afff;
+clip-path: polygon(0 0, 50% 65%, 100% 0);
+transform-origin:top;
+transition:0.8s;
+border-radius:10px;
+}
+
+.open .flap{
+transform:rotateX(180deg);
+}
+
+.card{
+position:absolute;
+width:300px;
+height:360px;
+background:white;
+border-radius:12px;
+padding:25px;
+box-sizing:border-box;
+top:10px;
+left:10px;
+transform:translateY(40px);
+opacity:0;
+transition:0.8s;
+overflow:auto;
+}
+
+.open .card{
+transform:translateY(-240px);
+opacity:1;
+}
+
+/* text */
+
+.title{
+font-size:22px;
+font-weight:bold;
+color:#7c5cff;
+margin-bottom:15px;
+text-align:center;
+}
+
+button{
+margin-top:20px;
+padding:10px 20px;
+border:none;
+background:#c7afff;
+color:white;
+font-weight:bold;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#b49cff;
+}
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+ul{
+text-align:left;
+line-height:1.6;
+}
+
+/* confetti */
+
+.confetti{
+position:fixed;
+width:8px;
+height:8px;
+background:#bfa6ff;
+top:-10px;
+animation:fall 4s linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="envelope" onclick="openLetter()" id="env">
+
+<div class="flap"></div>
+
+<div class="card">
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="page1">
+
+<div class="title">Happy Birthday Bebii 💜</div>
+
+<p id="typing"></p>
+
+<button onclick="nextPage()">Open Wishes 💌</button>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="page2">
+
+<div class="title">List of Wishes 💜</div>
+
+<ul>
+
+<li>semoga bebi is sehat2, tida ada sakit, selalu fit bisa jalanin everyday activity, tida kek saia yg suda tua</li>
+
+<br>
+
+<li>semoga this new job of bebi bisa jadi long term job yg bisa support bebi financially and mentally, semoga bisa climb up di perusahaan ini jadi salah satu top position (bismillah direksi) hahah, and bisa support keluarga</li>
+
+<br>
+
+<li>semoga bebi and frens selalu saling support and jadi bestie sampe tua</li>
+
+<br>
+
+<li>semoga bebi semakin rich rich rich so dat bisa jalan2 terus (harus sama saia) ehheh</li>
+
+<br>
+
+<li>semoga bebi jdi the best of the best this year di umur 23</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* open envelope */
+
+function openLetter(){
+document.getElementById("env").classList.toggle("open");
+startTyping();
+createConfetti();
+}
+
+/* typing effect */
+
+let text = `heppi heppi heppi 23rd birthday my bebii 💜
+
+semoga tahun ini bisa menjadi tahun yg lancar and baik buat my bebii,
+
+tahun ini semua stats bebi suda +1 bekos umur is +1 haha
+
+happy birthday sayang 💜`;
+
+let i=0;
+
+function startTyping(){
+
+let speed=40;
+
+function type(){
+if(i < text.length){
+document.getElementById("typing").innerHTML += text.charAt(i);
+i++;
+setTimeout(type,speed);
+}
+}
+
+type();
+}
+
+/* next page */
+
+function nextPage(){
+document.getElementById("page1").classList.remove("active");
+document.getElementById("page2").classList.add("active");
+}
+
+/* confetti */
+
+function createConfetti(){
+
+for(let i=0;i<40;i++){
+
+let conf=document.createElement("div");
+conf.className="confetti";
+conf.style.left=Math.random()*100+"vw";
+conf.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(conf);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
